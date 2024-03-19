@@ -3,6 +3,7 @@ import tw from 'twin.macro'
 import { useEffect, useRef, useState } from 'react'
 import { ISelect } from '../../utils/types'
 import { Icons } from '../icons'
+import { CSSTransition } from 'react-transition-group'
 
 const Select: React.FC<ISelect> = ({
   options,
@@ -15,6 +16,7 @@ const Select: React.FC<ISelect> = ({
   const widthRef = useRef<HTMLDivElement | null>(null)
   const selectRef = useRef<HTMLDivElement>(null)
   const [activeTitle, setActiveTitle] = useState<string>(title || 'title')
+  const transitionRef = useRef(null)
 
   const handleOpenSelect = () => {
     setOpen(prev => !prev)
@@ -62,17 +64,26 @@ const Select: React.FC<ISelect> = ({
           {activeTitle}
         </div>
       </div>
+      <CSSTransition
+        in={open}
+        timeout={300}
+        classNames="dropdown"
+        nodeRef={transitionRef}
+        unmountOnExit
+      >
+        <>
       {open && (
         <ul
-          tw="absolute z-10 mt-[6px] flex flex-col overflow-hidden rounded border bg-white dark:border-gray-700 dark:bg-gray-700"
+          tw="absolute z-10 mt-[6px] flex flex-col overflow-hidden rounded border bg-white dark:border-gray-700 dark:bg-gray-700 max-h-[160px] overflow-y-auto"
           css={[{ width: widthRef.current?.offsetWidth }]}
+          ref={transitionRef}
         >
           {options &&
             options.map(
               (option, index) =>
                 option !== activeTitle && (
                   <li
-                    tw="flex h-10 cursor-pointer items-center justify-between gap-2 border-b px-4 text-sm font-semibold uppercase transition-all last:border-[0] hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
+                    tw="flex h-10 cursor-pointer items-center justify-between gap-2 border-b px-4 shrink-0 text-sm font-semibold uppercase transition-all last:border-[0] hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
                     css={activeTitle == option && tw`font-bold pointer-events-none`}
                     key={index}
                     onClick={() => handleSetActive(option)}
@@ -86,7 +97,7 @@ const Select: React.FC<ISelect> = ({
             )}
           {hasResetOption && (
             <li
-              tw="flex h-10 cursor-pointer items-center justify-between px-6 text-sm font-semibold uppercase transition-all hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
+              tw="flex h-10 cursor-pointer items-center justify-between shrink-0  px-6 text-sm font-semibold uppercase transition-all hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
               onClick={() => handleReset()}
             >
               Reset
@@ -94,6 +105,8 @@ const Select: React.FC<ISelect> = ({
           )}
         </ul>
       )}
+              </>
+      </CSSTransition>
     </div>
   )
 }
