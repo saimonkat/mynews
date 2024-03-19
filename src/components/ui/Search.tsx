@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { ISearch } from '../../utils/types'
 import { Icons } from '../icons'
 
-const Search: React.FC<ISearch> = ({ updateValue, shouldReset }) => {
+const Search: React.FC<ISearch> = ({ updateValue, shouldReset, placeholder }) => {
   const [value, setValue] = useState<string>('')
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -32,6 +32,7 @@ const Search: React.FC<ISearch> = ({ updateValue, shouldReset }) => {
         tw="h-full w-full rounded border border-gray-300 bg-transparent pl-3 pr-14 outline-none transition-colors focus:border-sky-500 lg:w-48 dark:text-white"
         value={value}
         onChange={handleChange}
+        placeholder={placeholder}
       ></input>
       {value !== '' && (
         <button
