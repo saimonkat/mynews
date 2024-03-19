@@ -5,15 +5,14 @@ networks:
     driver: bridge
 
 services:
-  node:
-    container_name: node_${APP_NAME}
-    image: node_${APP_NAME}
+  app:
+    container_name: mynews
+    image: mynews
     build:
-      context: docker/node
-    working_dir: /var/www
-    volumes:
-      - ./:/var/www
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
-    networks:
-      - app-network
+    volumes:
+      - .:/app
+      - /app/node_modules
