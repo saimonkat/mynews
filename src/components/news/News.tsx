@@ -139,7 +139,7 @@ const News = () => {
             </div>
           </div>
           <div tw="lg:absolute lg:right-0 lg:top-1/2 lg:z-20 lg:-translate-y-1/2">
-            <Search updateValue={setSearchText} shouldReset={shouldReset} placeholder="search" />
+            <Search updateValue={setSearchText} shouldReset={shouldReset} placeholder="Search" />
           </div>
         </div>
         {isLoading && <div tw="text-center text-gray-400">Loading news...</div>}

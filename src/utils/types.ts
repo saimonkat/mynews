@@ -32,4 +32,5 @@ export interface ISearch {
   value?: string
   updateValue: (value: string) => void
   shouldReset?: boolean
+  placeholder?:string
 }
