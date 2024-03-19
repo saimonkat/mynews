@@ -1,6 +1,6 @@
-export interface ICategory {
-  journal: string
-  onCategoryChange: (journal: string) => void;
+export interface IJournal {
+  title: string
+  onJournalChange: (journal: string) => void;
 }
 
 export interface IPost {
@@ -9,8 +9,9 @@ export interface IPost {
   publishedAt?: string
   tags?: string[]
   description?: string | undefined
-  urlToImage?: string
-  authors?: string[] | undefined
+  date?: string
+  img?: string
+  author?: string
   journal: string
   url?: string
 }
@@ -19,24 +20,16 @@ export interface INews {
   post: IPost
 }
 
-
-interface SelectOprions {
-  option: string;
-}
-
-export interface SelectProps {
-  options?: SelectOprions[];
+export interface ISelect {
+  options?: string[];
   title?: string
-  contentWidth?: string
-  width?:number
   setActiveOption?: (value: string) => void
+  shouldReset?: boolean
+  hasResetOption?: boolean
 }
 
-export interface IContent {
-  title: string;
-  description: string;
-  date: string;
-  link: string;
-  imgLink: string;
-  journal: string;
+export interface ISearch {
+  value?: string
+  updateValue: (value: string) => void
+  shouldReset?: boolean
 }

@@ -3,10 +3,11 @@ interface FieldsTheGuardian {
   shortUrl: string
   standfirst: string
   thumbnail: string
+  byline: string
 }
 
 export interface ItemTheGuardian {
-  apiUrl: string
+  webUrl: string
   webTitle: string
   fields: FieldsTheGuardian
   webPublicationDate: string

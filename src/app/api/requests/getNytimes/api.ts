@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Nytimes, ItemNytimes } from './types'
 
 const getNytimes = async () => {
-  const uri = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=erGvi3c9s7gOyixTqGB4onxgNoGlaPJy`
+  const uri = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=XS7Ng3GdGyALKR04YcEC4CtBNyft0njA`
 
   try {
     const response = await axios.get<Nytimes>(uri)
@@ -11,9 +11,10 @@ const getNytimes = async () => {
     return results.map((item: ItemNytimes) => ({
       title: item.title,
       description: item.abstract,
-      imgLink: item.multimedia.length > 0 ? item.multimedia[0].url : '',
-      link: item.url,
+      img: item.multimedia?.length > 0 ? item.multimedia[0].url : '',
+      url: item.url,
       date: item.created_date,
+      author: item.byline,
       journal: 'nytimes',
     }))
   } catch (error) {

@@ -3,6 +3,15 @@ import { useQuery } from 'react-query'
 import { getNewsApi } from '../../requests/getNewsApi'
 import { getNytimes } from '../../requests/getNytimes'
 import { getTheGuardian } from '../../requests/getTheGuardian'
+import { IPost } from '@/utils/types'
+
+function shuffleArray(array: IPost[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 const useContent = () => {
   const fetchNewsApi = useQuery('getNewsApiNews', getNewsApi)
@@ -11,11 +20,12 @@ const useContent = () => {
 
   const combinedData = React.useMemo(() => {
     if (fetchNewsApi.isLoading || fetchNytimes.isLoading || fetchTheGuardian.isLoading) return []
-    return [
+    const data = [
       ...(fetchNewsApi.data || []),
       ...(fetchNytimes.data || []),
       ...(fetchTheGuardian.data || []),
     ]
+    return shuffleArray(data);
   }, [fetchNewsApi.data, fetchNytimes.data, fetchTheGuardian.data])
 
   return {

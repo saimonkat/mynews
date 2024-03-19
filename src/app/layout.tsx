@@ -6,7 +6,6 @@ import StyledComponentsRegistry from '@/lib/registry'
 import GlobalStyles from '@/styles/GlobalStyles'
 import type { Metadata } from 'next'
 import React from 'react'
-import "../styles/index.css"
 
 export const metadata: Metadata = {
   title: {

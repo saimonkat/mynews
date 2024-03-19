@@ -11,9 +11,10 @@ const getTheGuardian = async () => {
     return result.results.map((item: ItemTheGuardian) => ({
       title: item.webTitle,
       description: item.fields.standfirst,
-      imgLink: item.fields.thumbnail,
-      link: item.apiUrl,
+      img: item.fields.thumbnail,
+      url: item.webUrl,
       date: item.webPublicationDate,
+      author: item.fields.byline,
       journal: 'theguardian',
     }))
   } catch (error) {

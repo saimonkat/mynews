@@ -1,14 +1,11 @@
-const selectData = {
-  options: [
-    {
-      option: 'Newest first',
-    },
-    {
-      option: 'Oldest first',
-    },
-  ],
-  title: 'sorting by date',
-  width: 240,
+const sortSelectData = {
+  options: ['Newest first', 'Oldest first'],
+  title: 'Sort',
 }
 
-export { selectData }
+const filterSelectData = {
+  options: [],
+  title: 'Author',
+}
+
+export { sortSelectData, filterSelectData }

@@ -32,14 +32,16 @@ function Gradient() {
           src="/static/images/bg-gradient.png"
           width={1000}
           height={300}
-          tw="w-[71.75rem] max-w-none flex-none dark:hidden"
+          tw="w-[71rem] max-w-none flex-none dark:hidden"
+          priority
         />
         <Image
           alt="bg-gradient"
           src="/static/images/bg-gradient-dark.png"
-          width={256}
-          height={128}
-          tw="hidden w-[71.75rem] max-w-none flex-none dark:block"
+          width={1000}
+          height={300}
+          tw="hidden w-[71rem] max-w-none flex-none dark:block"
+          priority
         />
       </div>
     </div>

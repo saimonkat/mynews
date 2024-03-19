@@ -1,3 +1,7 @@
+'use client'
+import 'twin.macro'
+import { Icons } from '../icons'
+
 interface PaginationProps {
   totalPages: number
   currentPage: number
@@ -6,16 +10,26 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, setCurrentPage }) => {
   return (
-    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
+    <div tw="mt-10 flex justify-center">
+      <nav tw="relative">
         {currentPage > 1 && (
-          <button onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
+          <button
+            tw="absolute -left-4 top-1/2 -translate-x-full -translate-y-1/2 p-2 transition-colors hover:text-sky-500"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            <Icons.Arrow tw="w-4 rotate-180" />
+          </button>
         )}
-        <span>
-          {currentPage} of {totalPages}
+        <span tw="text-lg">
+          Page {currentPage} of {totalPages}
         </span>
         {currentPage < totalPages && (
-          <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+          <button
+            tw="absolute -right-4 top-1/2 -translate-y-1/2 translate-x-full p-2 transition-colors hover:text-sky-500"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            <Icons.Arrow tw="w-4" />
+          </button>
         )}
       </nav>
     </div>

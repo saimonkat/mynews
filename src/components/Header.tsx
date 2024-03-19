@@ -1,7 +1,7 @@
 'use client'
 import 'twin.macro'
 import Link from 'next/link'
-import ThemeToggler from '@/components/ThemeToggler'
+import ThemeToggler from '@/components/ui/ThemeToggler'
 import { Logo } from './Logo'
 
 const Header = () => {

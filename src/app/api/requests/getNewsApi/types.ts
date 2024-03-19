@@ -4,6 +4,7 @@ export interface ItemDataNewsAPI {
   urlToImage: string
   description: string
   publishedAt: string
+  author: string
 }
 
 export interface DataNewsAPI {

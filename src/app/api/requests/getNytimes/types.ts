@@ -3,11 +3,12 @@ interface MediaNytimes {
 }
 
 export interface ItemNytimes {
-    title:string
-    abstract:string
-    url:string
-    created_date:string
-    multimedia: MediaNytimes[]
+    title: string
+    abstract: string
+    url: string
+    created_date: string
+    multimedia: MediaNytimes[],
+    byline: string
 }
 
 export interface Nytimes {

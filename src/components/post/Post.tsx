@@ -3,6 +3,7 @@ import tw from 'twin.macro'
 import Image from 'next/image'
 import { IPost } from '@/utils/types'
 import { useState } from 'react'
+import parseHtmlToText from '@/utils/parseHtmlToText'
 
 function Post(data: IPost) {
   const [isLiked, setIsLiked] = useState(false)
@@ -17,10 +18,10 @@ function Post(data: IPost) {
       className="group"
     >
       <a href={data.url} target="_blank" tw="relative block aspect-[16/9] w-full overflow-hidden">
-        {data.urlToImage && (
+        {data.img && (
           <Image
             alt="post"
-            src={data.urlToImage}
+            src={data.img}
             width={400}
             height={192}
             tw="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
@@ -47,30 +48,14 @@ function Post(data: IPost) {
         >
           {data.title}
         </a>
-        <div tw="mb-2 flex flex-wrap gap-2">
-          <a
-            href={data.url}
-            target="_blank"
-            tw="mb-1 block text-xs font-medium tracking-widest text-gray-400 transition-colors hover:text-sky-500"
-          >
-            CATEGORY
-          </a>
-          <a
-            href={data.url}
-            target="_blank"
-            tw="mb-1 block text-xs font-medium tracking-widest text-gray-400 transition-colors hover:text-sky-500"
-          >
-            CATEGORY
-          </a>
-          <a
-            href={data.url}
-            target="_blank"
-            tw="mb-1 block text-xs font-medium tracking-widest text-gray-400 transition-colors hover:text-sky-500"
-          >
-            CATEGORY
-          </a>
-        </div>
-        <p tw="mb-4 line-clamp-3 leading-relaxed">{data.description}</p>
+        {data.author && (
+          <div tw="mb-3 flex flex-wrap gap-2">
+            <div tw="text-xs font-medium text-gray-400">{data.author}</div>
+          </div>
+        )}
+        {data.description && (
+          <p tw="mb-4 line-clamp-3 leading-relaxed">{parseHtmlToText(data.description)}</p>
+        )}
         <div tw="mt-auto flex flex-wrap items-center justify-between">
           <a
             href={data.url}

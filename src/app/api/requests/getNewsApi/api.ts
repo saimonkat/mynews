@@ -11,9 +11,10 @@ const getNewsApi = async () => {
     return result.articles.map((item: ItemDataNewsAPI) => ({
       title: item.title,
       description: item.description,
-      imgLink: item.urlToImage,
-      link: item.url,
+      img: item.urlToImage,
+      url: item.url,
       date: item.publishedAt,
+      author: item.author,
       journal: 'newsapi',
     }))
   } catch (error) {
