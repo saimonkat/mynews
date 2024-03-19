@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Nytimes, ItemNytimes } from './types'
 
 const getNytimes = async () => {
-  const uri = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=XS7Ng3GdGyALKR04YcEC4CtBNyft0njA`
+  const uri = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.NEXT_PUBLIC_NEW_YORK_TIMES_API_TOKEN}`
 
   try {
     const response = await axios.get<Nytimes>(uri)

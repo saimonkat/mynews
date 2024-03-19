@@ -3,7 +3,7 @@ import { TheGuardian, ItemTheGuardian } from './types'
 
 const getTheGuardian = async () => {
   const uri =
-    'https://content.guardianapis.com/search?show-fields=headline,standfirst,thumbnail,short-url&api-key=9106a940-333a-4248-ab12-d206689496d9'
+    `https://content.guardianapis.com/search?show-fields=headline,standfirst,thumbnail,short-url&api-key=${process.env.NEXT_PUBLIC_THE_GUARDIAN_API_TOKEN}`
   try {
     const response = await axios.get(uri)
     const result: TheGuardian = response.data.response

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { DataNewsAPI, ItemDataNewsAPI } from './types'
 
 const getNewsApi = async () => {
-  const uri = `https://newsapi.org/v2/top-headlines?country=us&apiKey=5b5b235fe6084146a96b7eeed0d127d4`
+  const uri = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_TOKEN}`
 
   try {
     const response = await axios.get(uri)
