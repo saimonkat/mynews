@@ -51,7 +51,7 @@ Docker must be installed on your machine. You can download and install Docker fr
 Open a terminal and navigate to the root directory of the project where the Dockerfile is located. Run the following command to build the Docker image:
 
 ```sh
-docker build -t mynews .
+docker-compose build
 ```
 
 #### Run the Container
@@ -59,7 +59,7 @@ docker build -t mynews .
 After the image has been successfully built, run the container using:
 
 ```sh
-docker run -p 3000:3000 mynews
+docker-compose up
 ```
 
 This command runs the container and maps port 3000 of the container to port 3000 on your host machine.
@@ -73,5 +73,5 @@ With the container running, open your web browser and navigate to http://localho
 To stop the container, execute:
 
 ```sh
-docker stop mynews
+docker-compose stop
 ```
