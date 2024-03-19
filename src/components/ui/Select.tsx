@@ -60,8 +60,8 @@ const Select: React.FC<ISelect> = ({
         tw="relative flex w-full overflow-hidden rounded"
         css={!options?.length && tw`pointer-events-none opacity-30`}
       >
-        <div tw="relative z-10 flex h-8 w-full cursor-pointer items-center justify-center rounded border border-gray-300 text-sm font-semibold uppercase transition-all hover:border-slate-500 dark:bg-gray-700 dark:bg-transparent dark:text-gray-100 dark:hover:border-gray-500 dark:hover:bg-transparent">
-          {activeTitle}
+        <div tw="relative z-10 flex h-8 w-full cursor-pointer items-center rounded border border-gray-300 px-3 text-sm font-semibold uppercase transition-all hover:border-slate-500 dark:bg-gray-700 dark:bg-transparent dark:text-gray-100 dark:hover:border-gray-500 dark:hover:bg-transparent">
+          <div tw="w-full truncate">{activeTitle}</div>
         </div>
       </div>
       <CSSTransition
@@ -72,40 +72,40 @@ const Select: React.FC<ISelect> = ({
         unmountOnExit
       >
         <>
-      {open && (
-        <ul
-          tw="absolute z-10 mt-[6px] flex flex-col overflow-hidden rounded border bg-white dark:border-gray-700 dark:bg-gray-700 max-h-[160px] overflow-y-auto"
-          css={[{ width: widthRef.current?.offsetWidth }]}
-          ref={transitionRef}
-        >
-          {options &&
-            options.map(
-              (option, index) =>
-                option !== activeTitle && (
-                  <li
-                    tw="flex h-10 cursor-pointer items-center justify-between gap-2 border-b px-4 shrink-0 text-sm font-semibold uppercase transition-all last:border-[0] hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
-                    css={activeTitle == option && tw`font-bold pointer-events-none`}
-                    key={index}
-                    onClick={() => handleSetActive(option)}
-                  >
-                    <span tw="w-full truncate">{option}</span>
-                    <span tw="w-3">
-                      <Icons.Arrow />
-                    </span>
-                  </li>
-                ),
-            )}
-          {hasResetOption && (
-            <li
-              tw="flex h-10 cursor-pointer items-center justify-between shrink-0  px-6 text-sm font-semibold uppercase transition-all hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
-              onClick={() => handleReset()}
+          {open && (
+            <ul
+              tw="absolute z-10 mt-[6px] flex max-h-[160px] flex-col overflow-hidden overflow-y-auto rounded border bg-white dark:border-gray-700 dark:bg-gray-700"
+              css={[{ width: widthRef.current?.offsetWidth }]}
+              ref={transitionRef}
             >
-              Reset
-            </li>
+              {options &&
+                options.map(
+                  (option, index) =>
+                    option !== activeTitle && (
+                      <li
+                        tw="flex h-10 shrink-0 cursor-pointer items-center justify-between gap-2 border-b px-4 text-sm font-semibold uppercase transition-all last:border-[0] hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
+                        css={activeTitle == option && tw`font-bold pointer-events-none`}
+                        key={index}
+                        onClick={() => handleSetActive(option)}
+                      >
+                        <span tw="w-full truncate">{option}</span>
+                        <span tw="w-3">
+                          <Icons.Arrow />
+                        </span>
+                      </li>
+                    ),
+                )}
+              {hasResetOption && (
+                <li
+                  tw="flex h-10 shrink-0 cursor-pointer items-center justify-center  px-6 text-sm font-semibold uppercase transition-all hover:bg-slate-100 dark:border-gray-primary-700 dark:text-white dark:hover:bg-gray-800"
+                  onClick={() => handleReset()}
+                >
+                  Reset
+                </li>
+              )}
+            </ul>
           )}
-        </ul>
-      )}
-              </>
+        </>
       </CSSTransition>
     </div>
   )
