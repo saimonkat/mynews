@@ -4,9 +4,7 @@ Customizable aggregator for news from around the world, allowing you to explore 
 
 ## About project build
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-This template uses Tailwind CSS.
+This is a [Next.js](https://nextjs.org/) project uses [Tailwind CSS](https://tailwindcss.com/).
 
 ## Development
 
